@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Sorting_Report
 {
-    internal class SortType1
+    public class SortType1
     {
+        private static void Swap(IList<int> list, int left, int right)
+        {
+            int temp = list[left];
+            list[left] = list[right];
+            list[right] = temp;
+        }
         /******************************************************
          * 선형 정렬
          * 
@@ -27,7 +33,23 @@ namespace Sorting_Report
          * 내림차순으로 진행되고 정렬된다
          * 배열 전체를 비교하여 진행하므로 시간복잡도는 O(n^2)이다
          *******************************************************/
+        public static void Selection(IList<int> list)
+        {
+            for (int i =0; i < list.Count -1; i++)                     // 배열 크기만큼 반복
+            {
+                int minValue = i;
+                for (int j = i + 1; j < list.Count; j++)
+                {
+                    if (list[j] < list[minValue])
+                    {
+                        minValue = j;
+                    }
+                }
+                Swap(list, i, minValue);
+            }
+        }
 
+       
         /*******************************************************
         * <삽입정렬(Insertion Sort)>
         * 정렬되지 않은 배열에서, 배열 맨앞에서 두번째 값부터 해당 데이터의 앞쪽으로 탐색해가며 
@@ -36,6 +58,20 @@ namespace Sorting_Report
         * 기본적으로 오름차순이며 최악의 경우 시간복잡도가 O(N^2)수준이지만 최선의 경우 O(N)으로
         * 배열의 상태의 따라 효율도가 다르다
         *******************************************************/
+
+        public static void Insert(IList<int> list)
+        {
+           for (int i = 1; i < list.Count; i++)                     
+            {
+                int key = list[i];
+                int j;
+                for (j = i - 1; j >= 0 && key < list[j]; j--)           // 해당데이터 앞에 값
+                {
+                    list[j + 1] = list[j];
+                }
+                list[j + 1] = key;
+            }
+        } 
 
         /*******************************************************
         * <버블정렬(Bubble Sort)>
