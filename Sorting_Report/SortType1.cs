@@ -65,7 +65,7 @@ namespace Sorting_Report
             {
                 int key = list[i];
                 int j;
-                for (j = i - 1; j >= 0 && key < list[j]; j--)           // 해당데이터 앞에 값
+                for (j = i - 1; j >= 0 && key < list[j]; j--)           
                 {
                     list[j + 1] = list[j];
                 }
