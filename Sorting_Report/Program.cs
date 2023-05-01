@@ -21,6 +21,10 @@ namespace Sorting_Report
             list.Add(5);
             list.Add(2);
             list.Add(4);
+            int left = 0;
+            int right = 0;
+            int start = 0;
+            int end = 0;
 
             Console.WriteLine("=========================");
             for (int i = 0; i < list.Count; i++)
@@ -29,7 +33,11 @@ namespace Sorting_Report
             }
             Console.WriteLine("=========================");
             //SortType1.Selection(list);
-            SortType1.Insert(list);
+            //SortType1.Insert(list);
+            //SortType1.Bubble(list);
+            //SortType2.Heap(list);
+            //SortType2.Merge(list, left, right);
+            //SortType2.Quick(list, start, end);
             for (int i = 0; i < list.Count; i++)
             {
                 Console.WriteLine(list[i]);

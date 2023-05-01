@@ -33,7 +33,21 @@ namespace Sorting_Report
         * 또한 동일한 값을 가진 데이터를 정렬하는데 위치를 보장 하지않아 안정성면에서 다소 
         * 불안정한정렬을 보여주는 깨지는 정렬이이다
         *******************************************************/
+        public static void Heap(IList<int> list)
+        {
+            PriorityQueue<int, int> pq = new PriorityQueue<int, int>();
 
+            for (int i = 0; i < list.Count; i++)            
+            {
+                pq.Enqueue(list[i], list[i]);
+            }
+
+            for (int i = 0; i < list.Count; i++)            
+                                                            
+            {
+                list[i] = pq.Dequeue();
+            }
+        }
         /*******************************************************
         * <합병정렬(Merge Sort)>
         * 정렬되지 않은 배열을 2분할 하고 정렬하여 합병하는 알고리즘으로

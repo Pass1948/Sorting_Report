@@ -71,7 +71,7 @@ namespace Sorting_Report
                 }
                 list[j + 1] = key;
             }
-        } 
+        }
 
         /*******************************************************
         * <버블정렬(Bubble Sort)>
@@ -82,5 +82,16 @@ namespace Sorting_Report
         * 한그룹(데이터 두개)씩 배열길이만큼 비교하기애 
         * 안정성이 높고 최적화면에서 좋은 정렬중 하나다
         *******************************************************/
+        public static void Bubble(IList<int> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                for (int j = 1; j < list.Count; j++)
+                {
+                    if (list[j - 1] > list[j])
+                        Swap(list, j - 1, j);
+                }
+            }
+        }
     }
 }
