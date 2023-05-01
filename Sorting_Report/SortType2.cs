@@ -57,7 +57,43 @@ namespace Sorting_Report
         * 반분할된 배열을 따로 갖기에 별도의 메모리공간을 차지하며 컴퓨터상의 
         * 미리 메모리공간을 배치해야하는 오버헤드가 발생할수있다
         *******************************************************/
+        public static void Merge(IList<int> list, int left, int right)
+        {
+            if (left == right) return;
 
+            int mid = (left + right) / 2;
+            Merge(list, left, mid);
+            Merge(list, mid + 1, right);
+            Merge(list, left, mid, right);
+        }
+        public static void Merge(IList<int> list, int left, int mid, int right)
+        {
+            List<int> sortedList = new List<int>();
+            int leftIndex = left;
+            int rightIndex = mid + 1;
+
+            while (leftIndex <= mid && rightIndex <= right)
+            {
+                if (list[leftIndex] < list[rightIndex])
+                    sortedList.Add(list[leftIndex++]);
+                else
+                    sortedList.Add(list[rightIndex++]);
+            }
+            if (leftIndex > mid)    
+            {
+                for (int i = rightIndex; i <= right; i++)
+                    sortedList.Add(list[i]);
+            }
+            else  
+            {
+                for (int i = leftIndex; i <= mid; i++)
+                    sortedList.Add(list[i]);
+            }
+            for (int i = left; i <= right; i++)
+            {
+                list[i] = sortedList[i - left];
+            }
+        }
         /*******************************************************
         * <퀵정렬(Quick Sort)>
         * 정렬되지 않은 배열에서 하나의 배열요소에 피벗(기준점)을 정하고 
@@ -73,5 +109,29 @@ namespace Sorting_Report
         * 만약 순차적으로 정렬된 배열을 역순으로 재정렬을 할경우
         * 시간복잡도상의 최악의 상황으로 O(n^2)의 효율을 내게된다
         *******************************************************/
+        public static void Quick(IList<int> list, int start, int end)
+        {
+            if (start >= end) return;
+
+            int pivotIndex = start;                         
+            int leftIndex = pivotIndex + 1;
+            int rightIndex = end;
+
+            while (leftIndex <= rightIndex) 
+            {
+                while (list[leftIndex] <= list[pivotIndex] && leftIndex < end)
+                    leftIndex++;
+                while (list[rightIndex] >= list[pivotIndex] && rightIndex > start)
+                    rightIndex--;
+
+                if (leftIndex < rightIndex)     
+                    Swap(list, leftIndex, rightIndex);
+                else    
+                    Swap(list, pivotIndex, rightIndex);
+            }
+
+            Quick(list, start, rightIndex - 1);       
+            Quick(list, rightIndex + 1, end);         
+        }
     }
 }
